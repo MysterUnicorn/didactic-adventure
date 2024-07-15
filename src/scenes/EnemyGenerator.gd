@@ -2,17 +2,16 @@ extends Node
 
 @export var player: Node2D
 
-const MIN_OFFSET = 50
-const MAX_OFFSET = 150
+const MIN_SPAWN_DISTANCE_OFFSET = 50
+const MAX_SPAWN_DISTANCE_OFFSET = 150
 
 @onready var rng = RandomNumberGenerator.new()
 @onready var timer = get_node("Timer")
-@onready var enemy = preload("res://src/scenes/EnemyTest.tscn")
+@onready var enemy = preload("res://src/scenes/enemies/EnemyTest.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.timeout.connect(_on_timeout)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,7 +27,7 @@ func set_spawn_location() -> Vector2:
 	var screen_limits_in_game_distance = screen_limits_in_pixels / player.get_node("Camera2D").zoom.x
 	var distance = ((screen_limits_in_game_distance.x/2)**2 + (screen_limits_in_game_distance.y/2)**2)**(1.0/2.0)
 	# Set enemy spawn position
-	var enemy_distance = rng.randf_range(distance + MIN_OFFSET, distance + MAX_OFFSET)
+	var enemy_distance = rng.randf_range(distance + MIN_SPAWN_DISTANCE_OFFSET, distance + MAX_SPAWN_DISTANCE_OFFSET)
 	var enemy_angle = rng.randf_range(0, 360)
 	var enemy_relative_position = Vector2(cos(enemy_angle), sin(enemy_angle)) * enemy_distance
 	return enemy_relative_position + player.position
