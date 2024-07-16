@@ -5,11 +5,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1q2ut"]
 
-[node name="EnemyTest" type="CharacterBody2D"]
+[node name="EnemyTest" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_xon4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1q2ut")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_va42f")

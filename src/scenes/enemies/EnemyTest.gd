@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
-const SPEED = 150.0
+const SPEED = 10.0
 var HEALTH = 20.0
 
 func move():
@@ -18,4 +18,3 @@ func take_damage(amount):
 	HEALTH -= amount
 	if HEALTH <= 0:
 		queue_free()
-
