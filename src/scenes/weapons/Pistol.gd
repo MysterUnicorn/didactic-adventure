@@ -15,6 +15,26 @@ func _process(delta):
 func _on_timeout():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	var player = get_tree().get_first_node_in_group("player")
-	var bullet = BULLET.instantiate()
-	bullet.fire(enemies, player)
-	add_child(bullet)
+	
+	var target = get_closest_enemy(enemies, player)
+	if target != null:
+		var fire_direction = get_enemie_s_direction(target, player)
+		
+		var bullet = BULLET.instantiate()
+		bullet.fire(fire_direction)
+		add_child(bullet)
+
+func get_closest_enemy(enemies, player):
+	var player_position = player.global_position
+	var closest_enemy = null
+	var closest_enemy_distance = INF
+	for enemy in enemies:
+		var distance = enemy.global_position.distance_to(player_position)
+		if distance < closest_enemy_distance:
+			closest_enemy = enemy
+			closest_enemy_distance = distance
+	return closest_enemy
+	
+func get_enemie_s_direction(enemy, player):
+		return (enemy.global_position - player.global_position).normalized()
+

@@ -36,3 +36,4 @@ func _on_timeout():
 	var instance = enemy.instantiate()
 	instance.position = set_spawn_location()
 	add_child(instance)
+	print(len(self.get_children()))
