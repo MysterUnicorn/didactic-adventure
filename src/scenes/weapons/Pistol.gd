@@ -21,7 +21,9 @@ func _on_timeout():
 		var fire_direction = get_enemie_s_direction(target, player)
 		
 		var bullet = BULLET.instantiate()
+		bullet.rotate(PI/2 + fire_direction.angle())
 		bullet.fire(fire_direction)
+		
 		add_child(bullet)
 
 func get_closest_enemy(enemies, player):
