@@ -3,14 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://pq87mfxfqvgq" path="res://icon.svg" id="1_va42f"]
 [ext_resource type="Script" path="res://src/scenes/enemies/EnemyTest.gd" id="1_xon4t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1q2ut"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0fmw"]
+size = Vector2(130, 130)
 
 [node name="EnemyTest" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_xon4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1q2ut")
+position = Vector2(-7.15256e-06, -7.15256e-06)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_r0fmw")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
